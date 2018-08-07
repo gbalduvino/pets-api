@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const httpStatus = require('http-status');
 const APIError = require('../helpers/APIError');
 
+const Schema = mongoose.Schema;
+
 /**
  * Pet Schema
  */
@@ -36,6 +38,16 @@ const PetSchema = new mongoose.Schema({
   photos: [
     {
       type: String
+    }
+  ],
+  adopt: {
+    type: Schema.Types.ObjectId,
+    ref: 'Adopt'
+  },
+  friendlyWith: [
+    {
+      type: String,
+      enum: ['dogs', 'cats', 'kids']
     }
   ],
   createdAt: {

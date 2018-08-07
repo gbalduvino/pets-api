@@ -9,7 +9,7 @@ const router = express.Router(); // eslint-disable-line new-cap
 /** GET /health-check - Check service health */
 router.get('/health-check', (req, res) => res.send('OK'));
 
-// mount adopt routes at /adopts
+// mount user routes at /adopts
 router.use('/adopts', adoptRoutes);
 
 // mount pet routes at /pet

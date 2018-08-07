@@ -131,6 +131,31 @@ describe('## Pet APIs', () => {
     });
   });
 
+  describe('# POST /api/pets/:id/adopt', () => {
+    it('should adopt a pet', (done) => {
+      const data = {
+        message: 'Quiero Adoptarlo!',
+        contact: 'ana@email.com'
+      };
+      request(app)
+        .post(`/api/pets/${pet._id}/adopt`)
+        .send(data)
+        .expect(httpStatus.OK)
+        .then((res) => {
+          expect(res.body.name).to.equal(pet.name);
+          expect(res.body.age).to.equal(pet.age);
+          expect(res.body.size).to.equal(pet.size);
+          expect(res.body.color).to.equal(pet.color);
+          expect(res.body.sex).to.equal(pet.sex);
+          expect(res.body.description).to.equal(pet.description);
+          expect(res.body.breed).to.equal(pet.breed);
+          expect(res.body.adopt).to.be.a('string');
+          done();
+        })
+        .catch(done);
+    });
+  });
+
   describe('# DELETE /api/pets/', () => {
     it('should delete pet', (done) => {
       request(app)
